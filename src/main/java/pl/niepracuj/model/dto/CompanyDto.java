@@ -15,8 +15,12 @@ public class CompanyDto {
 
     private Long id;
 
+    private String name;
+
     private String address;
 
     private int size;
+
+    private String email;
 
 }
