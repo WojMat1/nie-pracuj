@@ -8,14 +8,11 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SkillDto {
-
-
-    private Long id;
+public class SkillCreateDto {
 
     private String name;
 
-    private LevelDto level;
+    private Long levelId;
 
 
 

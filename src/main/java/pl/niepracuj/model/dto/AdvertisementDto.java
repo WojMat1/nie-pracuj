@@ -1,9 +1,11 @@
 package pl.niepracuj.model.dto;
 
 import lombok.*;
+import pl.niepracuj.model.entity.City;
+import pl.niepracuj.model.entity.Seniority;
+import pl.niepracuj.model.entity.Technology;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Set;
 
 @Setter
@@ -13,22 +15,21 @@ import java.util.Set;
 @AllArgsConstructor
 public class AdvertisementDto {
 
-
         private Long id;
 
         private Set<SkillDto> skills;
 
         private String name;
 
-        private Long companyId;
+        private CompanyDto company;
 
-        private Long technologyId;
+        private TechnologyDto technology;
 
-        private Long seniorityId;
+        private SeniorityDto seniority;
 
-        private Timestamp publishDate;
+        private Instant publishDate;
 
-        private Timestamp expireDate;
+        private Instant expireDate;
 
         private Long salaryFrom;
 
@@ -36,7 +37,7 @@ public class AdvertisementDto {
 
         private String description;
 
-        private Long cityID;
+        private CityDto city;
 
     }
 
