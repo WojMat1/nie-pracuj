@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Company {
 
     @Id

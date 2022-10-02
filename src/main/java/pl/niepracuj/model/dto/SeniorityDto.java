@@ -16,4 +16,6 @@ public class SeniorityDto {
     private Long id;
 
     private String name;
+
 }
+
