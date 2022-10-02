@@ -10,21 +10,22 @@ public class CompanyMapper {
     public CompanyDto toDto(Company company) {
         return CompanyDto.builder()
                 .id(company.getId())
-                .name(company.getName())
                 .email(company.getEmail())
                 .size(company.getSize())
                 .address(company.getAddress())
+                .name(company.getName())
                 .build();
     }
 
-    public Company ToNewEntity(CompanyDto companyDto) {
+    public Company toNewEntity(CompanyDto companyDto) {
         return Company.builder()
-                .name(companyDto.getName())
+                .address(companyDto.getAddress())
                 .email(companyDto.getEmail())
                 .size(companyDto.getSize())
-                .address(companyDto.getAddress())
+                .name(companyDto.getName())
                 .build();
     }
-
-
 }
+
+
+

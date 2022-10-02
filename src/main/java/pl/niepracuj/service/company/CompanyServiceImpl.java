@@ -24,7 +24,7 @@ public class CompanyServiceImpl implements CompanyService{
     }
     @Override
     public CompanyDto createCompany(CompanyDto companyDto) {
-        return companyMapper.toDto(companyRepository.save(companyMapper.ToNewEntity(companyDto)));
+        return companyMapper.toDto(companyRepository.save(companyMapper.toNewEntity(companyDto)));
     }
 
     }

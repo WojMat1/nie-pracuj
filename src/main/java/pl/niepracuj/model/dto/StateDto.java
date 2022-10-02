@@ -2,21 +2,15 @@ package pl.niepracuj.model.dto;
 
 import lombok.*;
 
-
-@Setter
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SkillDto {
-
+public class StateDto {
 
     private Long id;
 
     private String name;
-
-    private LevelDto level;
-
-
 
 }
