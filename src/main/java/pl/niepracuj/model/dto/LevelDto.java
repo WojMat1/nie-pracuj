@@ -2,20 +2,18 @@ package pl.niepracuj.model.dto;
 
 import lombok.*;
 
-import javax.persistence.*;
-
 
 @Setter
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LevelsDto {
+public class LevelDto {
 
 
     private Long id;
 
     private String name;
 
-    private int score;
+    private Integer score;
 }
