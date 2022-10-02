@@ -10,6 +10,8 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Technology {
 
     @Id

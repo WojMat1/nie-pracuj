@@ -18,10 +18,7 @@ public class SkillDto {
 
     private String name;
 
-
     private Long levelId;
-
-
 
     private Set<AdvertisementDto> advertisements;
 

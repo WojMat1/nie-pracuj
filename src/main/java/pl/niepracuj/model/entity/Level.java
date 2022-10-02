@@ -10,10 +10,13 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Level {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
