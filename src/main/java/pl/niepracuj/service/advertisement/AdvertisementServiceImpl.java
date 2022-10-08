@@ -14,8 +14,10 @@ import pl.niepracuj.repository.*;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,14 +52,20 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public AdvertisementDto createAdvertisement(AdvertisementCreateDto createDto) {
+
         Advertisement advertisement = advertisementMapper.toNewEntity(createDto);
-        advertisement.setPublishDate(Instant.now());
+        advertisement.setPublishDate(LocalDateTime.now());
+
+
         advertisement.setCompany(companyRepository.findById(createDto.getCompanyId())
                 .orElseThrow(() -> new EntityNotFoundException(Company.class.getSimpleName(),createDto.getCompanyId())));
+
         advertisement.setTechnology(technologyRepository.findById(createDto.getTechnologyId())
                 .orElseThrow(() -> new EntityNotFoundException(Technology.class.getSimpleName(),createDto.getTechnologyId())));
+
         advertisement.setSeniority(seniorityRepository.findById(createDto.getSeniorityId())
                 .orElseThrow(() -> new EntityNotFoundException(Seniority.class.getSimpleName(),createDto.getSeniorityId())));
+
         advertisement.setCity(cityRepository.findById(createDto.getCityId())
                 .orElseThrow(() -> new EntityNotFoundException(City.class.getSimpleName(),createDto.getCityId())));
 

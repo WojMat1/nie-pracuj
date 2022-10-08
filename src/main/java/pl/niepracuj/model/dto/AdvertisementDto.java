@@ -3,6 +3,7 @@ package pl.niepracuj.model.dto;
 import lombok.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Setter
@@ -24,9 +25,9 @@ public class AdvertisementDto {
 
         private SeniorityDto seniority;
 
-        private Instant publishDate;
+        private LocalDateTime publishDate;
 
-        private Instant expireDate;
+        private LocalDateTime expireDate;
 
         private Long salaryFrom;
 

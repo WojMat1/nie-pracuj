@@ -8,6 +8,8 @@ import pl.niepracuj.model.dto.SkillDto;
 import pl.niepracuj.model.entity.Advertisement;
 import pl.niepracuj.model.entity.Skill;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,7 +47,7 @@ public class AdvertisementMapper {
     public Advertisement toNewEntity(AdvertisementCreateDto advertisementCreateDto) {
         return Advertisement.builder()
                 .name(advertisementCreateDto.getName())
-                .expireDate(advertisementCreateDto.getExpireDate())
+                .expireDate((advertisementCreateDto.getExpireDate()))
                 .salaryFrom(advertisementCreateDto.getSalaryFrom())
                 .salaryTo(advertisementCreateDto.getSalaryTo())
                 .description(advertisementCreateDto.getDescription())

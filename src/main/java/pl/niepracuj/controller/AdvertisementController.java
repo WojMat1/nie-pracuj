@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.niepracuj.model.dto.AdvertisementCreateDto;
 import pl.niepracuj.model.dto.AdvertisementDto;
-import pl.niepracuj.model.dto.CompanyDto;
 import pl.niepracuj.service.advertisement.AdvertisementService;
-import pl.niepracuj.service.company.CompanyService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +22,7 @@ public class AdvertisementController {
     }
 
    @PostMapping("/create")
-    public AdvertisementDto createAdvertisement (@RequestBody AdvertisementCreateDto advertisementCreateDto) {
+    public AdvertisementDto createAdvertisement (@RequestBody @Valid AdvertisementCreateDto advertisementCreateDto) {
         return advertisementService.createAdvertisement(advertisementCreateDto);
     }
 

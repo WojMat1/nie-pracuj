@@ -3,7 +3,7 @@ package pl.niepracuj.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -22,10 +22,10 @@ public class Advertisement {
         private String name;
 
         @Column(name = "publish_date")
-        private Instant publishDate;
+        private LocalDateTime publishDate;
 
         @Column(name = "expire_date")
-        private Instant expireDate;
+        private LocalDateTime expireDate;
 
         @Column(name = "salary_from")
         private Long salaryFrom;
