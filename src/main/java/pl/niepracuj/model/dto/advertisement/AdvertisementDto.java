@@ -1,8 +1,8 @@
-package pl.niepracuj.model.dto;
+package pl.niepracuj.model.dto.advertisement;
 
 import lombok.*;
+import pl.niepracuj.model.dto.*;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Set;
 

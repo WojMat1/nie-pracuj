@@ -3,21 +3,18 @@ package pl.niepracuj.service.advertisement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.niepracuj.exception.exceptions.EntityNotFoundException;
-import pl.niepracuj.exception.exceptions.ResourceNotFoundException;
-import pl.niepracuj.exception.messages.ExceptionMessages;
+import pl.niepracuj.model.dto.advertisement.AdvertisementSearchCriteriaDto;
 import pl.niepracuj.model.entity.*;
 import pl.niepracuj.model.mapper.AdvertisementMapper;
 import pl.niepracuj.model.mapper.SkillMapper;
-import pl.niepracuj.model.dto.AdvertisementCreateDto;
-import pl.niepracuj.model.dto.AdvertisementDto;
+import pl.niepracuj.model.dto.advertisement.AdvertisementCreateDto;
+import pl.niepracuj.model.dto.advertisement.AdvertisementDto;
 import pl.niepracuj.repository.*;
 
 import javax.transaction.Transactional;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +48,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public List<AdvertisementDto> getAdvertisementsByCriteria(AdvertisementSearchCriteriaDto criteriaDto) {
+        var specification = new AdvertisementSpecification(criteriaDto);
+        return advertisementRepository.findAll(specification).stream()
+                .map(advertisement -> advertisementMapper.toDto(advertisement)).collect(Collectors.toList());
+    }
+
+    @Override
     public AdvertisementDto createAdvertisement(AdvertisementCreateDto createDto) {
 
         Advertisement advertisement = advertisementMapper.toNewEntity(createDto);
@@ -72,7 +76,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         List<Skill> skills = createDto.getSkills().stream()
                 .map(skillCreateDto -> {
                     Skill skill = skillMapper.toNewEntity(skillCreateDto);
-                    skill.setLevel(levelRepository.findById(skillCreateDto.getLevelId()).orElseThrow(RuntimeException::new));
+                    skill.setLevel(levelRepository.findById(skillCreateDto.getLevelId())
+                            .orElseThrow(() -> new EntityNotFoundException("Level", skillCreateDto.getLevelId())));
                     return skill;
                 }).collect(Collectors.toList());
 

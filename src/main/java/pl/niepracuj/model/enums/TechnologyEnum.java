@@ -6,7 +6,7 @@ public enum TechnologyEnum {
     HTML,
     PHP,
     RUBY,
-    Java,
+    JAVA,
     Python,
     SCALA,
     MOBILE,

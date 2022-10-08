@@ -6,7 +6,7 @@ import pl.niepracuj.model.enums.TechnologyEnum;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "technology")
+@Table(name = "technologies")
 @Setter
 @Getter
 @NoArgsConstructor
