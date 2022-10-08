@@ -9,7 +9,4 @@ import java.util.Set;
 @Repository
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
-    Set<Advertisement> findAdvertisementByCity(String city);
-
-
-}
+   }

@@ -1,9 +1,6 @@
 package pl.niepracuj.model.dto;
 
 import lombok.*;
-import pl.niepracuj.model.entity.City;
-import pl.niepracuj.model.entity.Seniority;
-import pl.niepracuj.model.entity.Technology;
 
 import java.time.Instant;
 import java.util.Set;

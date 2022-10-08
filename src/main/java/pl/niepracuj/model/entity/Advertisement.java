@@ -10,7 +10,9 @@ import java.util.Set;
 @Table(name = "advertisements")
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Advertisement {
 
         @Id

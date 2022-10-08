@@ -1,4 +1,4 @@
-package pl.niepracuj.mapper;
+package pl.niepracuj.model.mapper;
 
 import org.springframework.stereotype.Component;
 import pl.niepracuj.model.dto.LevelDto;

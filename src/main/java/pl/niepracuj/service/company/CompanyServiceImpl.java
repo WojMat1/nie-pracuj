@@ -2,7 +2,7 @@ package pl.niepracuj.service.company;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.niepracuj.mapper.CompanyMapper;
+import pl.niepracuj.model.mapper.CompanyMapper;
 import pl.niepracuj.model.dto.CompanyDto;
 import pl.niepracuj.repository.CompanyRepository;
 

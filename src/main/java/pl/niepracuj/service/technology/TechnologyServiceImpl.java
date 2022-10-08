@@ -2,7 +2,7 @@ package pl.niepracuj.service.technology;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.niepracuj.mapper.TechnologyMapper;
+import pl.niepracuj.model.mapper.TechnologyMapper;
 import pl.niepracuj.model.dto.TechnologyDto;
 import pl.niepracuj.repository.TechnologyRepository;
 

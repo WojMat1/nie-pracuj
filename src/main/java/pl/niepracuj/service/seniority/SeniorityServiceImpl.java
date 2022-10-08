@@ -2,7 +2,7 @@ package pl.niepracuj.service.seniority;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.niepracuj.mapper.SeniorityMapper;
+import pl.niepracuj.model.mapper.SeniorityMapper;
 import pl.niepracuj.model.dto.SeniorityDto;
 import pl.niepracuj.repository.SeniorityRepository;
 

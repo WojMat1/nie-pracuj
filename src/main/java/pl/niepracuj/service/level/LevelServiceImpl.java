@@ -2,7 +2,7 @@ package pl.niepracuj.service.level;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.niepracuj.mapper.LevelMapper;
+import pl.niepracuj.model.mapper.LevelMapper;
 import pl.niepracuj.model.dto.LevelDto;
 import pl.niepracuj.repository.LevelRepository;
 

@@ -10,7 +10,9 @@ import java.util.Set;
 @Table(name = "skills")
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Skill {
 
     @Id
