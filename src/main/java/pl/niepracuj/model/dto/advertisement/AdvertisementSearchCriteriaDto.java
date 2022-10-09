@@ -3,6 +3,8 @@ package pl.niepracuj.model.dto.advertisement;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import pl.niepracuj.model.enums.SeniorityEnum;
+import pl.niepracuj.model.enums.TechnologyEnum;
+
 @Getter
 @RequiredArgsConstructor
 public class AdvertisementSearchCriteriaDto {
@@ -16,7 +18,7 @@ public class AdvertisementSearchCriteriaDto {
 
     private String companyName;
 
-    private String technologyName;
+    private TechnologyEnum technologyName;
 
     private SeniorityEnum seniorityName;
 
