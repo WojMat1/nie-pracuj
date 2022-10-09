@@ -1,12 +1,14 @@
 package pl.niepracuj.model.dto.advertisement;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import pl.niepracuj.model.enums.SeniorityEnum;
 import pl.niepracuj.model.enums.TechnologyEnum;
 
+@Setter
 @Getter
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdvertisementSearchCriteriaDto {
 
 
