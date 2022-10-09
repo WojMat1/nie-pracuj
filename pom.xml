@@ -20,6 +20,7 @@
         <mysql.version>8.0.30</mysql.version>
         <swagger.version>1.6.4</swagger.version>
         <params.version>5.9.1</params.version>
+        <metamodel.version>5.3.7.Final</metamodel.version>
     </properties>
     <dependencies>
         <dependency>
@@ -76,6 +77,11 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${metamodel.version}</version>
         </dependency>
     </dependencies>
 
