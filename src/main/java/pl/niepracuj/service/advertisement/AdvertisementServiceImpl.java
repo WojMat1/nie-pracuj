@@ -8,7 +8,8 @@ import pl.niepracuj.exception.exceptions.EntityNotFoundException;
 import pl.niepracuj.model.dto.advertisement.AdvertisementCreateDto;
 import pl.niepracuj.model.dto.advertisement.AdvertisementDto;
 import pl.niepracuj.model.dto.advertisement.AdvertisementSearchCriteriaDto;
-import pl.niepracuj.model.entity.*;
+import pl.niepracuj.model.entity.Advertisement;
+import pl.niepracuj.model.entity.Skill;
 import pl.niepracuj.model.mapper.AdvertisementMapper;
 import pl.niepracuj.model.mapper.SkillMapper;
 import pl.niepracuj.repository.*;
@@ -26,8 +27,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final AdvertisementRepository advertisementRepository;
 
-    private final AdvertisementMapper advertisementMapper;
-
     private final CompanyRepository companyRepository;
 
     private final TechnologyRepository technologyRepository;
@@ -36,12 +35,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final CityRepository cityRepository;
 
-    private final LevelRepository levelRepository;
-
-    private final SkillMapper skillMapper;
-
     private final SkillRepository skillRepository;
 
+    private final LevelRepository levelRepository;
+
+    private final AdvertisementMapper advertisementMapper;
+
+    private final SkillMapper skillMapper;
 
     @Override
     public List<AdvertisementDto> getAllAdvertisements() {
@@ -50,32 +50,31 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementDto> getAdvertisementsByCriteria(AdvertisementSearchCriteriaDto criteriaDto,
-                                                              Pageable pageable) {
+    public List<AdvertisementDto> getAllAdvertisementsForCompany(Long companyId) {
+        return advertisementRepository.findByCompany_Id(companyId).stream().map(advertisementMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AdvertisementDto> getAdvertisementsByCriteria(AdvertisementSearchCriteriaDto criteriaDto, Pageable pageable) {
         var specification = new AdvertisementSpecification(criteriaDto);
         Page<Advertisement> advertisements = advertisementRepository.findAll(specification, pageable);
-        return advertisements.getContent().stream()
-                .map(advertisement -> advertisementMapper.toDto(advertisement)).collect(Collectors.toList());
+        return advertisements.getContent().stream().map(advertisementMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public AdvertisementDto createAdvertisement(AdvertisementCreateDto createDto) {
-
         Advertisement advertisement = advertisementMapper.toNewEntity(createDto);
         advertisement.setPublishDate(LocalDateTime.now());
-
-
         advertisement.setCompany(companyRepository.findById(createDto.getCompanyId())
-                .orElseThrow(() -> new EntityNotFoundException(Company.class.getSimpleName(),createDto.getCompanyId())));
-
+                .orElseThrow(() -> new EntityNotFoundException("Company", createDto.getCompanyId())));
         advertisement.setTechnology(technologyRepository.findById(createDto.getTechnologyId())
-                .orElseThrow(() -> new EntityNotFoundException(Technology.class.getSimpleName(),createDto.getTechnologyId())));
-
+                .orElseThrow(() -> new EntityNotFoundException("Technology", createDto.getTechnologyId())));
         advertisement.setSeniority(seniorityRepository.findById(createDto.getSeniorityId())
-                .orElseThrow(() -> new EntityNotFoundException(Seniority.class.getSimpleName(),createDto.getSeniorityId())));
-
+                .orElseThrow(() -> new EntityNotFoundException("Seniority", createDto.getSeniorityId())));
         advertisement.setCity(cityRepository.findById(createDto.getCityId())
-                .orElseThrow(() -> new EntityNotFoundException(City.class.getSimpleName(),createDto.getCityId())));
+                .orElseThrow(() -> new EntityNotFoundException("City", createDto.getCityId())));
 
         List<Skill> skills = createDto.getSkills().stream()
                 .map(skillCreateDto -> {

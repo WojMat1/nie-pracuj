@@ -23,8 +23,13 @@ public class AdvertisementController {
         return advertisementService.getAllAdvertisements();
     }
 
-   @PostMapping("/create")
-    public AdvertisementDto createAdvertisement (@RequestBody @Valid AdvertisementCreateDto advertisementCreateDto) {
+    @GetMapping("/all/company/{companyId}")
+    public List<AdvertisementDto> getAdvertisementsForCompany(@PathVariable Long companyId) {
+        return advertisementService.getAllAdvertisementsForCompany(companyId);
+    }
+
+    @PostMapping("/create")
+    public AdvertisementDto createAdvertisement(@RequestBody @Valid AdvertisementCreateDto advertisementCreateDto) {
         return advertisementService.createAdvertisement(advertisementCreateDto);
     }
 
@@ -33,8 +38,4 @@ public class AdvertisementController {
                                                                 Pageable pageable) {
         return advertisementService.getAdvertisementsByCriteria(criteriaDto, pageable);
     }
-
-
-
-
 }

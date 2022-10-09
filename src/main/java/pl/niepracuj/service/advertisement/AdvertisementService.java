@@ -11,7 +11,9 @@ public interface AdvertisementService {
 
     List<AdvertisementDto> getAllAdvertisements();
 
+    List<AdvertisementDto> getAllAdvertisementsForCompany(Long companyId);
+
     List<AdvertisementDto> getAdvertisementsByCriteria(AdvertisementSearchCriteriaDto criteriaDto, Pageable pageable);
 
-    AdvertisementDto createAdvertisement(AdvertisementCreateDto advertisementCreateDto);
+    AdvertisementDto createAdvertisement(AdvertisementCreateDto createDto);
 }

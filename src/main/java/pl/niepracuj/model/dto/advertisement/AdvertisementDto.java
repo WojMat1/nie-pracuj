@@ -6,8 +6,8 @@ import pl.niepracuj.model.dto.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Setter
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,15 +15,7 @@ public class AdvertisementDto {
 
         private Long id;
 
-        private Set<SkillDto> skills;
-
         private String name;
-
-        private CompanyDto company;
-
-        private TechnologyDto technology;
-
-        private SeniorityDto seniority;
 
         private LocalDateTime publishDate;
 
@@ -35,8 +27,13 @@ public class AdvertisementDto {
 
         private String description;
 
+        private CompanyDto company;
+
+        private TechnologyDto technology;
+
+        private SeniorityDto seniority;
+
         private CityDto city;
 
-    }
-
-
+        private Set<SkillDto> skills;
+}

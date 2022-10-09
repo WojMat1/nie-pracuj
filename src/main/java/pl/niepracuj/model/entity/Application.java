@@ -1,16 +1,16 @@
 package pl.niepracuj.model.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "applications")
-@Setter
+@Builder
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Application {
 
     @Id
@@ -29,5 +29,4 @@ public class Application {
 
     @ManyToOne
     private Advertisement advertisement;
-
 }

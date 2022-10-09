@@ -8,8 +8,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Setter
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,7 +40,4 @@ public class AdvertisementCreateDto {
         private Long cityId;
 
         private Set<SkillCreateDto> skills;
-
-    }
-
-
+}

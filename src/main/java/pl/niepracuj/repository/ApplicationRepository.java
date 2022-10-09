@@ -6,8 +6,4 @@ import pl.niepracuj.model.entity.Application;
 
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
-
-
-
-
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.domain.Specification;
 import pl.niepracuj.model.dto.advertisement.AdvertisementSearchCriteriaDto;
 import pl.niepracuj.model.entity.Advertisement;
 import pl.niepracuj.model.entity.Advertisement_;
+import pl.niepracuj.model.entity.City_;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,31 +21,25 @@ public class AdvertisementSpecification implements Specification<Advertisement> 
 
     @Override
     public Predicate toPredicate(Root<Advertisement> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-        return  criteriaBuilder.and(
-                advertisementNameLike(root, criteriaBuilder),
+        return criteriaBuilder.and(advertisementNameLike(root, criteriaBuilder),
                 cityLike(root, criteriaBuilder),
                 seniorityNameEquals(root, criteriaBuilder),
                 technologyNameEquals(root, criteriaBuilder),
                 salaryFromLessThanOrEqualTo(root, criteriaBuilder),
-                salaryToGreaterThanOrEqualTo(root, criteriaBuilder));
-    }
-
-    private Predicate alwaysTruePredicate(CriteriaBuilder criteriaBuilder) {
-        return criteriaBuilder.isTrue(criteriaBuilder.literal(true));
+                salaryToGraterThanOrEqualTo(root, criteriaBuilder));
     }
 
     private Predicate advertisementNameLike(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
         return nonNull(criteriaDto.getName()) ?
-        criteriaBuilder.like(criteriaBuilder.lower(root.get(Advertisement_.NAME)), "%" + criteriaDto.getName().toLowerCase() + "%") :
+                criteriaBuilder.like(criteriaBuilder.lower(root.get(Advertisement_.NAME)), "%" + criteriaDto.getName().toLowerCase() + "%") :
                 alwaysTruePredicate(criteriaBuilder);
     }
 
     private Predicate cityLike(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
         return nonNull(criteriaDto.getCityName()) ?
-                criteriaBuilder.like(criteriaBuilder.lower(root.get(Advertisement_.CITY)), "%" + criteriaDto.getCityName().toLowerCase() + "%") :
+                criteriaBuilder.like(criteriaBuilder.lower(root.get(Advertisement_.CITY).get(City_.NAME)), "%" + criteriaDto.getCityName().toLowerCase() + "%") :
                 alwaysTruePredicate(criteriaBuilder);
     }
-
     private Predicate seniorityNameEquals(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
         return nonNull(criteriaDto.getSeniorityName()) ?
                 criteriaBuilder.equal(root.get("seniority").get("name"), criteriaDto.getSeniorityName()) :
@@ -59,14 +54,17 @@ public class AdvertisementSpecification implements Specification<Advertisement> 
 
     private Predicate salaryFromLessThanOrEqualTo(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
         return nonNull(criteriaDto.getSalaryTo()) ?
-                criteriaBuilder.lessThanOrEqualTo(root.get("salaryFrom"), criteriaDto.getSalaryTo())
-                : alwaysTruePredicate(criteriaBuilder);
+                criteriaBuilder.lessThanOrEqualTo(root.get("salaryFrom"), criteriaDto.getSalaryTo()) :
+                alwaysTruePredicate(criteriaBuilder);
     }
 
-    private Predicate salaryToGreaterThanOrEqualTo(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
+    private Predicate salaryToGraterThanOrEqualTo(Root<Advertisement> root, CriteriaBuilder criteriaBuilder) {
         return nonNull(criteriaDto.getSalaryFrom()) ?
-                criteriaBuilder.greaterThanOrEqualTo(root.get("salaryTo"), criteriaDto.getSalaryFrom())
-                : alwaysTruePredicate(criteriaBuilder);
+                criteriaBuilder.greaterThanOrEqualTo(root.get("salaryTo"), criteriaDto.getSalaryFrom()) :
+                alwaysTruePredicate(criteriaBuilder);
     }
 
+    private Predicate alwaysTruePredicate(CriteriaBuilder criteriaBuilder) {
+        return criteriaBuilder.isTrue(criteriaBuilder.literal(true));
+    }
 }
