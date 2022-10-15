@@ -1,6 +1,6 @@
 package pl.niepracuj.controller
 
-import org.json.JSONObject
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,7 +13,8 @@ import pl.niepracuj.model.dto.advertisement.AdvertisementSearchCriteriaDto
 import pl.niepracuj.model.enums.SeniorityEnum
 import pl.niepracuj.model.enums.TechnologyEnum
 import spock.lang.Specification
-
+import static pl.niepracuj.util.TestUtils.jsonArrayStringToList
+import pl.niepracuj.model.entity.Advertisement
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static pl.niepracuj.util.TestUtils.toJsonString
@@ -51,7 +52,7 @@ class AdvertisementControllerGroovyTest extends  Specification {
                 def response = mockMvc.perform(get(url)).andReturn().response
             then:
                 response.status == 200
-                toJsonString(response.contentAsString).size() == 3
+
         }
 
         def "numbers to power of two" (int a, int b, int c) {
@@ -74,8 +75,8 @@ class AdvertisementControllerGroovyTest extends  Specification {
                     .technologyName(technology)
                     .cityName(city)
                     .seniorityName(seniority)
-                    .build();
-            def criteriaJson = toJsonString(criteria);
+                    .build()
+            def criteriaJson = toJsonString(criteria)
             def url = "/adv/search?page=0&size=10&sort=id,DESC"
 
             def response = mockMvc.perform(post(url)
@@ -83,8 +84,9 @@ class AdvertisementControllerGroovyTest extends  Specification {
                     .contentType(MediaType.APPLICATION_JSON)).andReturn().response
 
             expect:
+                def list =  jsonArrayStringToList(response.contentAsString, Advertisement)
+                list.size() == result
 
-                toJsonString(response.contentAsString).size() == result
 
             where:
             technology             | city            | seniority         | result
