@@ -4,6 +4,7 @@ import lombok.*;
 import pl.niepracuj.model.enums.SeniorityEnum;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -20,5 +21,6 @@ public class Seniority {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @NotBlank(message = "name is mandatory")
     private SeniorityEnum name;
 }

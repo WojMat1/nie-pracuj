@@ -3,8 +3,8 @@ package pl.niepracuj.service.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.niepracuj.exception.exceptions.EntityNotFoundException;
-import pl.niepracuj.model.dto.ApplicationCreateDto;
-import pl.niepracuj.model.dto.ApplicationDto;
+import pl.niepracuj.model.dto.application.ApplicationCreateDto;
+import pl.niepracuj.model.dto.application.ApplicationDto;
 import pl.niepracuj.model.entity.Application;
 import pl.niepracuj.model.mapper.ApplicationMapper;
 import pl.niepracuj.repository.AdvertisementRepository;
@@ -32,5 +32,4 @@ public class ApplicationServiceImpl implements ApplicationService {
                 .orElseThrow(() -> new EntityNotFoundException("Advertisement", applicationCreateDto.getAdvertisementId())));
         return applicationMapper.toDto(applicationRepository.save(application));
     }
-
 }

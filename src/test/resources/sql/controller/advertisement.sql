@@ -7,7 +7,8 @@ INSERT INTO seniorities (id, name) VALUES
    (2, 'MID');
 
 INSERT INTO companies (id, address, name, size, email) VALUES
-    (1, 'Krucza 1 00-000 Miasto', 'Company Co', 250, 'company.co@company.com');
+    (1, 'Krucza 1 00-000 Miasto', 'Company Co', 250, 'company.co@company.com'),
+    (2, 'Piłsudskiego 10 00-000 Warszawa', 'Ajple', 3000, 'biuro@ajple.com');
 
 INSERT INTO states (id, name) VALUES
    (2, 'DOLNOŚLĄSKIE'),
